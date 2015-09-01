@@ -29,12 +29,17 @@ module.exports = function(grunt) {
 					'jquery-ui/ui/i18n/datepicker-zh-CN.js',
 					'jquery-ui/themes/smoothness/**',
 					'jquery-cookie/*.js',
-					'select2/dist/{css,js}/*',
+					'select2/dist/{css,js}/**/*',
 					'bootstrap-table/dist/bootstrap-table.min.css',
 					'bootstrap-table/dist/bootstrap-table-all.min.js',
 					'bootstrap-table/dist/bootstrap-table.min.js',
-					'bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js'
-					],
+					'bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js',
+                    'zTree/js/jquery.ztree.all-3.5.min.js',
+                    'zTree/css/zTreeStyle/zTreeStyle.css',
+                    'zTree/css/zTreeStyle/img/**',
+                    'jquery.fixedheadertable/*.js',
+                    'jquery.fixedheadertable/css/*.css',
+                    'moment/min/moment-with-locales.min.js'					],
 				dest: 'dist/libs'
 			}
 		},
@@ -63,10 +68,10 @@ module.exports = function(grunt) {
 			files: ['test/**/*.html']
 		},
 		jshint: {
-			files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+			files: ['Gruntfile.js', 'src/js/**/*.js', 'test/**/*.js'],
 			options: {
 				globals: {
-				  jQuery: true
+				  	jQuery: true,
 				}
 			}
 		},
@@ -87,7 +92,7 @@ module.exports = function(grunt) {
 				options: {
 					hostname: '*', //默认就是这个值，可配置为本机某个 IP，localhost 或域名
 					open: true,
-					port: 8089,
+					port: 8088,
 					base: 'dist',
 					livereload: 35729,
 					middleware: function (connect, options) {
@@ -100,17 +105,47 @@ module.exports = function(grunt) {
 					}
 				},
 				proxies: [
+                
+                
+      //                   {
+						//   context: '/imgReceipt/',
+						//   host: '101.200.183.222',
+						//   //host: '123.57.234.161',
+						//   port: 8070,
+						//   https: false,
+						//   changeOrigin: true
+						
+						// },
+                
+      //                   {
+						//   context: '/imagesea/',
+						//   host: '101.200.183.222',
+						//   //host: '123.57.234.161',
+						//   port: 8070,
+						//   https: false,
+						//   changeOrigin: true
+						
+						// },
+				                          
+      //                   {
+						//   context: '/templatefile/',
+						//   host: '101.200.183.222',
+						//   //host: '123.57.234.161',
+						//   port: 8070,
+						//   https: false,
+						//   changeOrigin: true
+
+						// },
 				   
-						{
-						  context: '/api/v1/',
-						  host: '114.215.206.91',
-						  port: 8089,
-						  https: false,
-						  changeOrigin: true,
-						  // rewrite: {
-							// '^/api': '/'
-						  // }
-						}
+						// {
+						//   context: '/api/v1/',
+						//   host: '101.200.183.222',
+						//   //host: '123.57.234.161',
+						//   port: 8070,
+						//   https: false,
+						//   changeOrigin: true
+
+						// }
 				]
 
 			}
@@ -150,7 +185,6 @@ module.exports = function(grunt) {
 	grunt.registerTask('build',['jshint','clean','copy']);
 	grunt.registerTask('default', 'Start a Web Server for Development.', function (target) {
         grunt.task.run([
-
             'configureProxies:server',
             'connect:server',
             'watch'
