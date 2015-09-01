@@ -1,6 +1,5 @@
 ;(function(Backbone,Expand){
     var app = window.Application = _.extend({},Backbone.Events);
-    app.extend = Backbone.View.extend;
     app.create = function(ns,scope){
     	var parts = ns.split(".");
     	var object = scope || this;
@@ -15,7 +14,6 @@
     };
     var _regionalmap = {};
     app.create("Regional");
-    app.create("Widget");
     app.create("Storage");
     _.extend(app.Regional, {
 		create: function(config,viewtype){
