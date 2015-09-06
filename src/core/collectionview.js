@@ -15,9 +15,6 @@
                 this.collection = options.collection;
                 this.render();
             }
-            
-            //this._initChildViewStorage();
-            
         },
         _initialEvents: function() {
             if (this.collection) {
